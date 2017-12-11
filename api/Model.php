@@ -31,6 +31,18 @@ class Model
         return $sta->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    function _remove($opt = [])
+    {
+       $id = $opt['id'];
+       if(!$id){
+           return ['success' => false, 'msg' => 'internal_id'];
+       }
+       $sql = "delete from $this->table where id = $id";
+       $sta=$this->pdo->prepare($sql);
+       $r=$sta->execute();
+       return $r ? ['success' => true] : ['success' => false, 'msg' => 'internal_error'];
+    }
+
     function _add($opt = [])
     {
         return $this->add_or_update('add', $opt);
@@ -54,7 +66,7 @@ class Model
             if (!$old) {
                 return ['success' => false, 'msg' => 'internal_id'];
             }
-            $new_item = array_merge($old, $opt);
+            $opt = array_merge($old, $opt);
         }
         if ($type == 'add') {
             //生成sql 语句
@@ -64,7 +76,9 @@ class Model
             $sql = $this->create_update_sql($opt);
         }
         $sta = $this->pdo->prepare($sql);
-        return $sta->execute();
+        $r = $sta->execute();
+
+        return $r ? ['success' => true] : ['success' => false, 'msg' => 'internal_error'];
     }
 
     //生成增加语句
@@ -89,7 +103,21 @@ class Model
     //生成更新语句
     function create_update_sql($opt)
     {
-
+        $id = $opt['id'];
+        $col = '';
+        $aa = $this->column_name_list();
+        foreach ($opt as $key => $val) {
+            if (in_array($key, $aa)) {
+                //更新的时候id 不能让更新
+                if ($key == 'id') continue;
+                if ($opt[ $key ] == '') continue;
+                $col .= $key . " = '" . $val . "',";
+            } else {
+                continue;
+            }
+        }
+        $col = trim($col, ',');
+        return $sql = "update $this->table set $col where id = $id";
     }
 
     //取到你要编辑这个表单中所有 键

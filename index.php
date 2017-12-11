@@ -1,5 +1,5 @@
 <?php
-require_once (__DIR__ . '/./helper/helper.php');
+require_once(__DIR__ . '/./helper/helper.php');
 require_once(__DIR__ . '/./api/gateway.php');
 $uri = $_SERVER['REQUEST_URI'];
 if (strpos($uri, '/a/') !== false) {
@@ -8,6 +8,6 @@ if (strpos($uri, '/a/') !== false) {
 }
 switch ($uri) {
     case '/';
-    tpl('home');
-    break;
+        tpl('home');
+        break;
 }
