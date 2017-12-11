@@ -14,7 +14,7 @@ class Article extends Model
     public function read($rows)
     {
         $data = $this->_read($rows);
-        return $data ? ['success' => true, 'data' => $data] : ['success' => false, 'msg' => 's'];
+        return $data['success'] ? ['success' => true, 'data' => $data['data']] : ['success' => false, 'msg' => $data['msg']];
     }
 
     public function add($rows)

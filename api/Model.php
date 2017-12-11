@@ -11,6 +11,10 @@ class Model
         $de = $opt['de'] ?: 'desc';
         $title = $opt['title'];
         if ($id) {
+            $aa=$this->find_this_item($id);
+            if(!$aa){
+                return ['success' => false, 'msg' => 'invalid_id'];
+            }
             $sql = "select * from $this->table where id = $id";
         } else {
             if ($title) {
@@ -28,7 +32,8 @@ class Model
         }
         $sta = $this->pdo->prepare($sql);
         $sta->execute();
-        return $sta->fetchAll(PDO::FETCH_ASSOC);
+        $r=$sta->fetchAll(PDO::FETCH_ASSOC);
+        return $r ?['success' => true,'data' => $r] : ['success' => false,'msg' => 'internal_error'];
     }
 
     function _remove($opt = [])
@@ -62,6 +67,9 @@ class Model
         } else {
             //判断数据中是否存在这条数据
             $id = $opt['id'];
+            if(!$id){
+                return ['success' => false, 'msg' => 'internal_id'];
+            }
             $old = $this->find_this_item($id);
             if (!$old) {
                 return ['success' => false, 'msg' => 'internal_id'];
