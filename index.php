@@ -10,4 +10,10 @@ switch ($uri) {
     case '/';
         tpl('home');
         break;
+    case '/admin/article';
+        tpl('article');
+        break;
+    case '/admin/tag';
+        tpl('tag');
+        break;
 }

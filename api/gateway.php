@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__ . '/./article.php');
 require_once(__DIR__ . '/./tag.php');
+require_once(__DIR__ . '/./user.php');
 require_once(__DIR__ . '/../helper/helper.php');
 
 function get_page_input($uri)
