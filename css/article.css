@@ -1,0 +1,22 @@
+.header-image{
+    width: 100%;
+    height:40px;
+    text-align: center;
+}
+.header-image img{
+    width: 100%;
+    height:100%;
+}
+.left-col{
+    height:725px;
+    background-color: #e8f8ff;
+}
+.ff{
+    overflow: hidden;
+}
+.change_color li a:hover{
+    background: #abddf8;
+}
+.fan_ye{
+    text-align: center;
+}

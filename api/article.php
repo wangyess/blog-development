@@ -19,20 +19,26 @@ class Article extends Model
 
     public function add($rows)
     {
-        $data=$this->_add($rows);
-        return $data['success']?['success' => true]:['success' => false, 'msg' => 'internal_error'];
+        $data = $this->_add($rows);
+        return $data['success'] ? ['success' => true] : ['success' => false, 'msg' => 'internal_error'];
     }
 
     public function remove($rows)
     {
-        $data=$this->_remove($rows);
+        $data = $this->_remove($rows);
         return $data;
     }
 
     public function update($rows)
     {
         $data = $this->_update($rows);
-        return $data['success']  ?['success' => true] : ['success' => false, 'msg' =>$data['msg']];
+        return $data['success'] ? ['success' => true] : ['success' => false, 'msg' => $data['msg']];
+    }
+
+    public function count()
+    {
+        $data = $this->read_count();
+        return $data;
     }
 
 }

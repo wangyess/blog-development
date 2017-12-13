@@ -11,8 +11,8 @@ class Model
         $de = $opt['de'] ?: 'desc';
         $title = $opt['title'];
         if ($id) {
-            $aa=$this->find_this_item($id);
-            if(!$aa){
+            $aa = $this->find_this_item($id);
+            if (!$aa) {
                 return ['success' => false, 'msg' => 'invalid_id'];
             }
             $sql = "select * from $this->table where id = $id";
@@ -32,20 +32,20 @@ class Model
         }
         $sta = $this->pdo->prepare($sql);
         $sta->execute();
-        $r=$sta->fetchAll(PDO::FETCH_ASSOC);
-        return $r ?['success' => true,'data' => $r] : ['success' => false,'msg' => 'internal_error'];
+        $r = $sta->fetchAll(PDO::FETCH_ASSOC);
+        return $r ? ['success' => true, 'data' => $r] : ['success' => false, 'msg' => 'internal_error'];
     }
 
     function _remove($opt = [])
     {
-       $id = $opt['id'];
-       if(!$id){
-           return ['success' => false, 'msg' => 'internal_id'];
-       }
-       $sql = "delete from $this->table where id = $id";
-       $sta=$this->pdo->prepare($sql);
-       $r=$sta->execute();
-       return $r ? ['success' => true] : ['success' => false, 'msg' => 'internal_error'];
+        $id = $opt['id'];
+        if (!$id) {
+            return ['success' => false, 'msg' => 'internal_id'];
+        }
+        $sql = "delete from $this->table where id = $id";
+        $sta = $this->pdo->prepare($sql);
+        $r = $sta->execute();
+        return $r ? ['success' => true] : ['success' => false, 'msg' => 'internal_error'];
     }
 
     function _add($opt = [])
@@ -67,7 +67,7 @@ class Model
         } else {
             //判断数据中是否存在这条数据
             $id = $opt['id'];
-            if(!$id){
+            if (!$id) {
                 return ['success' => false, 'msg' => 'internal_id'];
             }
             $old = $this->find_this_item($id);
@@ -154,5 +154,14 @@ class Model
         $sta = $this->pdo->prepare($sql);
         $sta->execute();
         return $sta->fetch(PDO::FETCH_ASSOC);
+    }
+
+    //获取表中的数据个数
+    function read_count()
+    {
+        $sql = "select count(*) from $this->table";
+        $sta=$this->pdo->prepare($sql);
+        $sta->execute();
+        return $r=$sta->fetchAll(PDO::FETCH_NUM)[0];
     }
 }
