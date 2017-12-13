@@ -16,4 +16,13 @@ switch ($uri) {
     case '/admin/tag';
         tpl('tag');
         break;
+    case '/login';
+        tpl('login');
+        break;
+    case '/logout';
+        tpl('logout');
+        break;
+    case '/signup';
+        tpl('signup');
+        break;
 }

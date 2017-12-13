@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 class Model
 {
@@ -160,8 +161,8 @@ class Model
     function read_count()
     {
         $sql = "select count(*) from $this->table";
-        $sta=$this->pdo->prepare($sql);
+        $sta = $this->pdo->prepare($sql);
         $sta->execute();
-        return $r=$sta->fetchAll(PDO::FETCH_NUM)[0];
+        return $r = $sta->fetchAll(PDO::FETCH_NUM)[0];
     }
 }

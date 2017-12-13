@@ -28,6 +28,10 @@
             <div>
                 <form id="my_form">
                     <input type="hidden" name='id'>
+                    <?php
+                    $aid=$_SESSION['user']['id'];
+                    echo  "<input type='hidden' name='author_id' value=' $aid '>" ;
+                    ?>
                     <input type="text" placeholder="Title" name="title" class="form-control">
                     <br>
                     <textarea name="content" cols="30" rows="10" class="form-control" placeholder="Content"></textarea>

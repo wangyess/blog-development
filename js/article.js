@@ -56,7 +56,6 @@
             })
     });
 
-
     //读取数据
     function read() {
         article.read({'page': page, 'limit': limit})

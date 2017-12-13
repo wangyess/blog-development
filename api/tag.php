@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once(__DIR__ . '/./Model.php');
 
 class Tag extends Model
@@ -33,5 +34,11 @@ class Tag extends Model
     {
         $data = $this->_read($rows);
         return $data['success'] ? ['success' => true, 'data' => $data['data']] : ['success' => false, 'msg' => $data['msg']];
+    }
+
+    public function count()
+    {
+        $data = $this->read_count();
+        return $data;
     }
 }
