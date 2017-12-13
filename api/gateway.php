@@ -39,6 +39,7 @@ function has_permission_to($model, $action)
             'update' => ['admin'],
             'remove' => ['admin'],
             'count'  => ['user', 'admin'],
+            'tag_article_biao' => ['user','admin'],
         ],
         'tag'     => [
             'read'   => ['admin'],

@@ -4,6 +4,7 @@
     var number;
     var page = 1;
     var article = new Model('article');
+    var tag = new Model('tag');
     //选中表单增加事件
     var my_form = document.querySelector('#my_form');
     //选中渲染的div
@@ -11,7 +12,8 @@
     //选中翻页按钮
     var top_page = document.querySelector('.top-page a');
     var next_page = document.querySelector('.next-page a');
-
+    //选中select
+    var select_form = document.querySelector('[name=tag_id]');
     init();
 
     function init() {
@@ -19,6 +21,8 @@
         read();
         //监听表单提交
         add_submit();
+        //获取tag标签中的数据
+        get_tag_data();
     }
 
     //获取所有数据个数
@@ -130,7 +134,10 @@
             var data = get_form_input();
             article.add_or_update(data)
                 .then(function (r) {
-                    read();
+                    if(r.success){
+                       tag_chuan(r.data);
+                        read();
+                    }
                 });
         })
     }
@@ -140,11 +147,52 @@
         var data = {};
         var input_list = document.querySelectorAll('[name]');
         input_list.forEach(function (item) {
+            if(item.name === 'tag_id'){
+                return;
+            }
             var val = item.value;
             var key = item.name;
             data[key] = val;
             item.value = '';
         });
         return data;
+    }
+
+    //传到article中
+    //获取tag标签中的数据
+    function get_tag_data() {
+        tag.read({'page': page, 'limit': 100})
+            .then(function (r) {
+                render_tag(r.data);
+            })
+    }
+
+    //渲染tag表中的数据
+    function render_tag(data) {
+        select_form.innerHTML = '';
+        data.forEach(function (item) {
+            var option = document.createElement('option');
+            option.innerHTML = item.title;
+            option.value = item.id;
+            select_form.appendChild(option);
+        })
+    }
+
+    //获取select 中的数据
+    function get_select_data() {
+        var select = document.getElementById("one");
+        var str = [];
+        for(var i=0;i<select.length;i++){
+            if(select.options[i].selected){
+                str.push(select[i].value);
+            }
+        }
+       return str;
+    }
+    //传
+    function tag_chuan(id) {
+        var str = get_select_data();
+        var row={'id':id,'data':str};
+        $.post('/a/article/tag_article_biao',row)
     }
 })();

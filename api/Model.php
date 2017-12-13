@@ -86,8 +86,7 @@ class Model
         }
         $sta = $this->pdo->prepare($sql);
         $r = $sta->execute();
-
-        return $r ? ['success' => true] : ['success' => false, 'msg' => 'internal_error'];
+        return $r ? ['success' => true,'data'=>$this->pdo->lastInsertId()] : ['success' => false, 'msg' => 'internal_error'];
     }
 
     //生成增加语句

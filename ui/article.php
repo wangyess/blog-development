@@ -28,11 +28,11 @@
             <div>
                 <form id="my_form">
                     <input type="hidden" name='id'>
-                    <?php
-                    $aid=$_SESSION['user']['id'];
-                    echo  "<input type='hidden' name='author_id' value=' $aid '>" ;
-                    ?>
                     <input type="text" placeholder="Title" name="title" class="form-control">
+                    <br>
+                    <select id="one" class="form-control" name="tag_id" multiple="true">
+
+                    </select>
                     <br>
                     <textarea name="content" cols="30" rows="10" class="form-control" placeholder="Content"></textarea>
                     <br>
