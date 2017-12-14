@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-class User
+class User extends Model
 {
     public $pdo;
-
+    public $table='user';
     public function __construct($pdo)
     {
         $this->pdo = $pdo;
@@ -57,6 +57,12 @@ class User
         $sta = $this->pdo->prepare($sql);
         $r = $sta->execute();
         return $r ? ['success' => true] : ['success' => false, 'msg' => 'interval_error'];
+    }
+
+    public function read($rows)
+    {
+        $data=$this->_read($rows);
+        return $data;
     }
 
     //密码加密

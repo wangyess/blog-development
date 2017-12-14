@@ -79,9 +79,18 @@ class Model
         }
         if ($type == 'add') {
             //生成sql 语句
+            date_default_timezone_set('PRC');
+            $today = date("Y-m-d H:i:s");
+            $opt['create_time'] = $today;
+            $opt['update_time'] = $today;
+            $uid=$_SESSION['user']['id'];
+            $opt['author_id']=$uid;
             $sql = $this->create_add_sql($opt);
         } else {
             //生成sql语句
+            date_default_timezone_set('PRC');
+            $today = date("Y-m-d H:i:s");
+            $opt['update_time'] = $today;
             $sql = $this->create_update_sql($opt);
         }
         $sta = $this->pdo->prepare($sql);

@@ -5,6 +5,7 @@
     var page = 1;
     var article = new Model('article');
     var tag = new Model('tag');
+    var user = new Model('user');
     //选中表单增加事件
     var my_form = document.querySelector('#my_form');
     //选中渲染的div
@@ -76,7 +77,7 @@
             tr.innerHTML = `
               <td>${item.id}</td>  
               <td>${item.title}</td>  
-              <td>${item.author_id}</td>  
+              <td id="ren_${item.id}">${item.author_id}</td>  
               <td>${item.create_time}</td>  
               <td>${item.update_time}</td>  
               <td>
@@ -91,7 +92,20 @@
             //绑定更新按钮
             var update_event = document.querySelector('#up_button_' + item.id);
             update(update_event, item);
+            //选中作者所在的td  再把id 传出来
+            var kk = document.querySelector('#ren_' + item.id);
+            render_author(kk,item.author_id);
         })
+    }
+
+    //渲染作者
+    function render_author(kk,id) {
+        user.read({'id': id})
+            .then(function (r) {
+                var data = r.data;
+                var author_name = data[0]['username'];
+                kk.innerText=author_name;
+            })
     }
 
     //更新
@@ -134,9 +148,10 @@
             var data = get_form_input();
             article.add_or_update(data)
                 .then(function (r) {
-                    if(r.success){
-                       tag_chuan(r.data);
+                    if (r.success) {
+                        tag_chuan(r.data);
                         read();
+                        get_tag_data();
                     }
                 });
         })
@@ -147,7 +162,7 @@
         var data = {};
         var input_list = document.querySelectorAll('[name]');
         input_list.forEach(function (item) {
-            if(item.name === 'tag_id'){
+            if (item.name === 'tag_id') {
                 return;
             }
             var val = item.value;
@@ -182,17 +197,18 @@
     function get_select_data() {
         var select = document.getElementById("one");
         var str = [];
-        for(var i=0;i<select.length;i++){
-            if(select.options[i].selected){
+        for (var i = 0; i < select.length; i++) {
+            if (select.options[i].selected) {
                 str.push(select[i].value);
             }
         }
-       return str;
+        return str;
     }
+
     //传
     function tag_chuan(id) {
         var str = get_select_data();
-        var row={'id':id,'data':str};
-        $.post('/a/article/tag_article_biao',row)
+        var row = {'id': id, 'data': str};
+        $.post('/a/article/tag_article_biao', row)
     }
 })();

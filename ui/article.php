@@ -45,7 +45,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Title</th>
-                        <th>author</th>
+                        <th id="author_title">author</th>
                         <th>create_time</th>
                         <th>update_time</th>
                         <th>operation</th>

@@ -30,7 +30,7 @@ function get_page_input($uri)
 function has_permission_to($model, $action)
 {
     $public = [
-        'user' => ['login', 'signup', 'logout'],
+        'user' => ['login', 'signup', 'logout','read'],
     ];
     $col = [
         'article' => [
