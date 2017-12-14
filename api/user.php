@@ -64,7 +64,6 @@ class User extends Model
         $data=$this->_read($rows);
         return $data;
     }
-
     //密码加密
     public function password_encrypt($password)
     {

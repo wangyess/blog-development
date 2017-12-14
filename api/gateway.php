@@ -31,22 +31,20 @@ function has_permission_to($model, $action)
 {
     $public = [
         'user' => ['login', 'signup', 'logout','read'],
+        'tag' => [ 'join_two' ,'read', 'count'],
+        'article' => ['read','count']
     ];
     $col = [
         'article' => [
-            'read'   => ['user', 'admin'],
             'add'    => ['admin'],
             'update' => ['admin'],
             'remove' => ['admin'],
-            'count'  => ['user', 'admin'],
             'tag_article_biao' => ['user','admin'],
         ],
         'tag'     => [
-            'read'   => ['admin'],
             'add'    => ['admin'],
             'update' => ['admin'],
             'remove' => ['admin'],
-            'count' => ['user' ,'admin']
         ],
     ];
     //判断是否有传进来的model

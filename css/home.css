@@ -1,0 +1,25 @@
+.article_page{
+    margin-top: 51px;
+}
+.one_t{
+    border:1px solid #e2e2e2;
+    margin-top: 5px;
+}
+.two_t{
+    color: #696969;
+    padding: 10px 0px 5px 15px;
+}
+.thr_t{
+    padding: 0px 0px 5px 5px;
+    height: 80px;
+    overflow: hidden;
+}
+.thr_t p{ text-indent: 40px ;color: #919191
+}
+.foe_t{
+    color: #787878;
+    padding: 10px 0 5px 10px;
+}
+.tag_t{
+   padding: 0px 0px 5px 15px;
+}
