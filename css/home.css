@@ -9,6 +9,9 @@
     color: #696969;
     padding: 10px 0px 5px 15px;
 }
+.two_t a{
+    text-decoration: none;
+}
 .thr_t{
     padding: 0px 0px 5px 5px;
     height: 80px;

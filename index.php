@@ -6,6 +6,10 @@ if (strpos($uri, '/a/') !== false) {
     echo get_page_input($uri);
     return;
 }
+if(strpos($uri,'/detail') !==false){
+    tpl('detail');
+    return;
+}
 switch ($uri) {
     case '/';
         tpl('home');

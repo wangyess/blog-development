@@ -1,0 +1,31 @@
+.article_page{
+    margin-top: 55px;
+    background-color: #f9f9f9;
+}
+.two_t{
+   text-align: center;
+    padding: 10px 0 10px 0;
+}
+.two_t a{
+    color: #747474;
+    text-decoration: none;
+}
+.two_t a:hover{
+    color: #5c5c5c;
+}
+.thr_t{
+    padding: 10px 10px 0px 10px;
+}
+.thr_t p{
+    text-indent: 30px;
+    color: #808080;
+    line-height: 2em;
+    padding: 5px 20px 20px 10px;
+}
+.tag_t{
+    padding: 10px 0px 10px 50px;
+}
+.foe_t{
+    color: #5c5c5c;
+    padding: 0px 0px 20px 20px ;
+}
