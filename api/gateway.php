@@ -31,7 +31,7 @@ function has_permission_to($model, $action)
 {
     $public = [
         'user' => ['login', 'signup', 'logout','read'],
-        'tag' => [ 'join_two' ,'read', 'count'],
+        'tag' => [ 'join_two' ,'read', 'count','join_one'],
         'article' => ['read','count']
     ];
     $col = [

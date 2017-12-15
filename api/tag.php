@@ -49,4 +49,11 @@ class Tag extends Model
         $sta->execute();
         return $sta->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function join_one($rows){
+        $id = $rows['id'];
+        $sql ="select * from article INNER JOIN tag_article on article.id = tag_article.article_id where tag_article.tag_id = $id";
+        $sta=$this->pdo->prepare($sql);
+        $sta->execute();
+        return $sta->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

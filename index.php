@@ -10,6 +10,10 @@ if(strpos($uri,'/detail') !==false){
     tpl('detail');
     return;
 }
+if(strpos($uri,'/tag_page') !==false){
+    tpl('tag_page');
+    return;
+}
 switch ($uri) {
     case '/';
         tpl('home');
