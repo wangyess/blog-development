@@ -34,3 +34,4 @@ switch ($uri) {
         tpl('signup');
         break;
 }
+
